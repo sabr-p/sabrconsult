@@ -18,8 +18,6 @@
     <link href="assets/css/main.css" rel="stylesheet">
     <link href="assets/css/colors/color-3498db.css" rel="stylesheet">
     <link href="assets/css/animations.css" rel="stylesheet">
-<!--    <link href="assets/css/invictus.css" rel="stylesheet">
-    <link href="assets/css/counter.css" rel="stylesheet"> -->
 
 
     <!-- JavaScripts needed at the beginning
