@@ -237,7 +237,7 @@ hr-d {
     background-size: cover;
 }
 
-
+/*
 #devwrap {
 	background: url(../img/vegas_strip.jpg) no-repeat center top; 
 	margin-top: -20px;
@@ -268,6 +268,8 @@ hr-d {
   text-shadow: 2px 2px #000000;
 	visibility: hidden;
 }
+
+*/
 
 #headerwrap h1 {
 	margin-top: 60px;

@@ -18,8 +18,8 @@
     <link href="assets/css/main.css" rel="stylesheet">
     <link href="assets/css/colors/color-3498db.css" rel="stylesheet">
     <link href="assets/css/animations.css" rel="stylesheet">
-    <link href="assets/css/invictus.css" rel="stylesheet">
-<!--    <link href="assets/css/counter.css" rel="stylesheet"> -->
+<!--    <link href="assets/css/invictus.css" rel="stylesheet">
+    <link href="assets/css/counter.css" rel="stylesheet"> -->
 
 
     <!-- JavaScripts needed at the beginning
@@ -34,13 +34,13 @@
 <body>
 <?php include 'header.php'; ?>
 
-    <div id="headerwrap" class="index-page">
+    <div id="headerwrap" class="fadeIn index-page">
     	<div class="container">
 			<div class="row">
         <div class="col-md-4 col-md-offset-1">
         </div>
         <div class="col-md-7">
-  					<h1 class="slideUp">SaBr Consult.</h1><h2 class="slideUp"> control your tech.</h2>
+  					<h1 class="ExpandUp fadeIn">SaBr Consult.</h1><h2 class="ExpandUp fadeIn"> control your tech.</h2>
           </div>
 			</div><!-- /row -->
     	</div><!-- /container -->
@@ -49,38 +49,6 @@
 
 
 	<div id="white" class="bitsharesx">
-		<div class="container">
-			<div class="inner-page row">
-    		<div class="col-md-4 centered">
-            <div style="min-height:20px">
-            </div>
-            <div class="index-sub-title col-1">
-            <img class="sabr-logo" src="assets/img/bitsharesx.png" alt="BitsharesX" />
-            <h4 style="margin-top:2px">Earn 5% or more on <i>Anything</i></h4>
-            </div>
-            <p>
-            <a class="btn large" href="">build</a>
-            </p>
-
-        </div>
-    		<div class="col-md-4 centered">
-            <img width="300px" class="sabr-logo" src="assets/img/keyhotee.png" alt="Keyhotee" />
-            <div class="index-sub-title  col-2">
-            <h4><i>Own</i> your Identity </h4>
-            </div>
-            <p>
-            <a class="btn large" href="#">Control</a>
-            </p>
-        </div>
-    		<div class="col-md-4 centered">
-            <img width="300px" class="sabr-logo" style="margin-top:-10px" src="assets/img/bitshares.png" alt="BitsharesX" />
-            <div class="index-sub-title col-3">
-            <h4>Beyond Bitcoin Summit</h4>
-            </div>
-            <p>
-            <a class="btn large" href="#">deploy</a>
-            </p>
-        </div>
       </div>
     </div>
   </div>
