@@ -1,60 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SabrConsult">
-    <meta name="author" content="sabr-p">
-    <link rel="shortcut icon" href="assets/ico/favicon.png">
+<?php
+# extraordinay lenghts for a simple cv demo
+# does a simple fetch & run of a php script to show the curriculum
 
-    <title>SabrConsult</title>
-    <script type="text/javascript" src="assets/js/flipcounter.js"></script>
+interface dataHandler {
+    public function storeStuff ($key, $data = null);
+    public function getStuff ($key);
 
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="assets/css/main.css" rel="stylesheet">
-    <link href="assets/css/colors/color-3498db.css" rel="stylesheet">
-    <link href="assets/css/animations.css" rel="stylesheet">
+}
 
 
-    <!-- JavaScripts needed at the beginning
-    ================================================== -->
+class internalHandler implements dataHandler {
+    private $dataContainer;
+    public function internalHandler(){
+        $this->dataContainer = array ();
+    }
 
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="assets/js/hover.zoom.js"></script>
-    <script src="assets/js/hover.zoom.conf.js"></script>
-
-  </head>
-
-<body>
-<?php include 'header.php'; ?>
-
-    <div id="headerwrap" class="fadeIn index-page">
-    	<div class="container">
-			<div class="row">
-        <div class="col-md-4 col-md-offset-1">
-        </div>
-        <div class="col-md-7">
-  					<h1 class="ExpandUp fadeIn">SaBr Consult.</h1><h2 class="ExpandUp fadeIn"> control your tech.</h2>
-          </div>
-			</div><!-- /row -->
-    	</div><!-- /container -->
-    </div> <!-- /headerwrap -->
+    public function storeStuff($key, $data = null) {
+        if ($data !== null) {
+            array_merge($this->dataContainer, array( $key => $data));
+            return true;
+        };
+        return false;
+    }
 
 
+    public function getStuff($key){
+        if (array_key_exists ($key, $this->dataContainer)) return $this->dataContainer[$key];
+        return false; //TODO: what if the value is false itself? should be an exception, leave it for a rainy day
+    }
 
-	<div id="white" class="bitsharesx">
-      </div>
-    </div>
-  </div>
 
-	</div><!-- /row -->
-</div><!-- /container -->
-</div><!-- end index-page -->
+}
 
-<?php include 'footer.php'; ?>
-</body>
-</html>
+class fsHandler {
+
+    static function fileDirectServe( $file, $path = null ) {
+        //direct to output, quick and dirty!!!  :D
+        $filePath = '';
+        $filePath = $path ? $path.'/'.$file : dirname(__FILE__).'/'.$file;
+        readfile( $filePath );
+    }
+
+    static function fileStore() {
+
+    }
+
+
+}
+
+class httpRouter {
+
+    //the response parameter should not really be used, just future-proofing
+    static function reqHandler( $request, &$response = null ) {
+        $status = 126;
+//        print( "GOT THIS:" . $request);
+        if (preg_match('/\.(?:html|js|css|png|jpeg|gif|doc|odt|pdf)$/', $request)) {
+            // deliver file, exit 0 to system
+            $reqBits = preg_split('/\./', $request);
+            self::setHeaders( $reqBits[1] );
+            fsHandler::fileDirectServe( $request );
+            $status = 0;
+        } else {
+
+            self::setHeaders( 'html' );
+            fsHandler::fileDirectServe( 'index.html' );
+            $status = 0;
+        }
+        return $status;
+    }
+
+    static function setHeaders( $type ) {
+        $headers = array();
+        switch ( $type) {
+            case 'html':
+                $headers += array('text/html');
+                break;
+            case 'css':
+                $headers += array('text/css');
+                break;
+            case 'js':
+                $headers += array('application/javascript');
+                break;
+            case 'doc':
+            case 'odt':
+            case 'pdf':
+            case 'zip':
+                $headers += array('application/octet-stream');
+                break;
+            default:
+                $headers += array('text/plain');
+        }
+        foreach ($headers as $key => $header) {
+            header("Content-Type: $header");
+        }
+
+    }
+
+}
+
+class appKernel {
+    protected $insideRouter = null,
+            $dataHandler = null;
+
+    function __construct() {
+        $this->insideRouter = new httpRouter();
+        $this->dataHandler = new internalHandler();
+    }
+
+    function kernelRun() {
+        $responseStatus = 126;
+        if( !isset($_SERVER["REQUEST_URI"]) ) {
+            print("not a valid request!!");
+            return $responseStatus; //abnormal exit, cuts off any other execution
+        }
+
+        $response =  '';
+        $responseStatus = $this->insideRouter->reqHandler($_SERVER["REQUEST_URI"], $response);
+        print $response;
+        return $responseStatus;
+    }
+}
+
+//print(dirname(__FILE__));
+$kernel = new appKernel();
+$kernel->kernelRun();
+
+?>
