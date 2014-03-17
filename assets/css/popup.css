@@ -1,5 +1,5 @@
 
-#popup
+.popup
 {  
     width:500px;
     height:300px;;
@@ -19,7 +19,7 @@
     opacity:1;
     z-index: 10000;
 }
-#overlay
+.overlay
 {
     position:absolute;
     top:0;
@@ -32,12 +32,12 @@
     text-align:center;
     z-index: 100;
 }
-#overlay:target
+.overlay:target
 {
     visibility:visible;
     -webkit-animation: fade 4000ms ease;
 }
-#overlay:target > #popup
+.overlay:target > #popup
 {
      -webkit-animation: moveFromBottom 4000ms ease;
 }
