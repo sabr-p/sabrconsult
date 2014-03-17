@@ -18,6 +18,7 @@
     <link href="assets/css/main.css" rel="stylesheet">
     <link href="assets/css/colors/color-3498db.css" rel="stylesheet">
     <link href="assets/css/animations.css" rel="stylesheet">
+    <link href="assets/css/popup.css" rel="stylesheet"/>
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="assets/js/hover.zoom.js"></script>
@@ -40,9 +41,7 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href=# >tech</a></li>
-        <li><a href=# >support</a></li>
-        <li><a href=# >LAMP</a></li>
+        <li><a href="#overlay" id="button">LOGIN</a></li>
 
       <li><a href="http://www.twitter.com/deimosaffair"><img  height="20px" src="https://g.twimg.com/Twitter_logo_blue.png"/></a></li>
       <li><a href="http://www.facebook.com/"><img  height="20px" src="http://epicshowdowns.com/wp-content/uploads/2013/12/facebook-icon.png"/></a></li>
@@ -55,9 +54,9 @@
     <div id="headerwrap" class="fadeIn index-page">
         <div class="container">
             <div class="row">
-        <div class="col-md-4 col-md-offset-1">
+        <div class="col-md-6 col-md-offset-1">
         </div>
-        <div class="col-md-7">
+        <div class="col-md-5">
                     <h1 class="ExpandUp fadeIn">SaBr Consult.</h1><h2 class="ExpandUp fadeIn"> control your tech.</h2>
           </div>
             </div><!-- /row -->
@@ -97,9 +96,22 @@
     </div><!-- /f -->
 
 
+    <div id="overlay">
+        <div id="popup">
+            <a href=""><img class="close_button" src="assets/img/close-button.png"/></a>
+            <form class="login">
+
+                  <label>Username</label>
+                  <input type="text" tabindex="1" class="input" placeholder="myuser" required><br><br>
+                  <label>Password</label>
+                  <input type="password" class="input" placeholder="password" tabindex="2" required><br><br>
+                  <input type="checkbox" tabindex="3">Keep me logged in
+                  <input type="submit" id="submitbtn" value="Login" tabindex="4">
+            </form>
+
+        </div>
+    </div>
 
     <script src="assets/js/bootstrap.min.js"></script>
-
-    </script>
 </body>
 </html>
